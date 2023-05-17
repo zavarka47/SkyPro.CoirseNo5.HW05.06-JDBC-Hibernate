@@ -1,6 +1,7 @@
 package model;
 
 import lombok.Data;
+import org.postgresql.util.PSQLException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,35 +19,19 @@ public class Employee {
         Employee employee = new Employee();
 
 
-        employee.setId(resultSet.getInt("id"));
-        employee.setFirstname(resultSet.getString("first_name"));
-        employee.setLastName(resultSet.getString("last_name"));
-        employee.setGender(resultSet.getString("gender"));
-        employee.setAge(resultSet.getInt("age"));
-        employee.setCityId(resultSet.getInt("city_id"));
+        try {
+            employee.setId(resultSet.getInt("id"));
+            employee.setFirstname(resultSet.getString("first_name"));
+            employee.setLastName(resultSet.getString("last_name"));
+            employee.setGender(resultSet.getString("gender"));
+            employee.setAge(resultSet.getInt("age"));
+            employee.setCityId(resultSet.getInt("city_id"));
 
-
+        } catch (PSQLException e){
+            System.out.println("Работник под данному id не найден");
+        }
         return employee;
-    }
 
-    public void setId(Integer id) {
-        if (id == null){
-            id = 0;
-        } else {
-            this.id = id;
-        }
-    }
 
-    public void setAge(Integer age) {
-        if (age == null){
-            age = 0;
-        } else {
-            this.age = age;
-        }
-    }
-
-    public void setCityId(Integer cityId) {
-
-        this.cityId = cityId;
     }
 }

@@ -66,7 +66,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public void updateById(Integer id, Employee employee) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(
                 "UPDATE employee SET " +
-                        "(first_name = (?), last_name = (?), gender = (?), age = (?), city_id = (?)) " +
+                        "first_name = (?), last_name = (?), gender = (?), age = (?), city_id = (?) " +
                         "WHERE id = (?)");
 
         statement.setString(1, employee.getFirstname());

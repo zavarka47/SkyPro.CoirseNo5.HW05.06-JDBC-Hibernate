@@ -27,9 +27,13 @@ public class Application {
         }
 
         EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl(connection);
+
         System.out.println(employeeDAO.getById(6));
         System.out.println(employeeDAO.getAll());
-        System.out.println(employeeDAO.getById(10));
+        employeeDAO.removeById(14);
+        employeeDAO.create(employeeDAO.getById(3));
+        employeeDAO.updateById(15, employeeDAO.getById(2));
+        System.out.println(employeeDAO.getById(7));
 
 
     }
