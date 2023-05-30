@@ -1,6 +1,8 @@
 package model;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 
@@ -18,6 +20,7 @@ public class Employee {
     private String lastName;
     private String gender;
     private Integer age;
-    @Column (name = "city_id")
-    private Integer cityId;
+    @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn (name = "city_Id" )
+    private City city;
 }
